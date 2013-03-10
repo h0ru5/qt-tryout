@@ -28,7 +28,7 @@ MyFirstWindow::MyFirstWindow(QWidget *parent) :QWidget(parent),
 }
 
 void MyFirstWindow::showStatus(bool ok) {
-    QString s = tr("the thing is ");
+    QString s("the thing is ");
     if(ok)
         s.append("good");
     else
@@ -40,10 +40,10 @@ void MyFirstWindow::showStatus(bool ok) {
 void MyFirstWindow::on_textChanged(const QString &text) {
     //blo->setText(text);
     setWindowTitle(text);
-    /* if(text.compare(tr("ok"))) {
-        emit statusCheck(true);
-    } */
-    emit statusCheck(!text.compare(tr("ok")));
+    bool res = !text.compare(tr("ok"));
+    qDebug() << "Checking " << text << " result " << res;
+
+    emit statusCheck(res);
 }
 
 MyFirstWindow::~MyFirstWindow()
